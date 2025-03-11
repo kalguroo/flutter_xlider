@@ -2074,7 +2074,7 @@ class _FlutterSliderState extends State<FlutterSlider>
     if (widget.axis == Axis.horizontal) {
       bottom = 0;
       left = _handlersPadding;
-      width = _containerWidthWithoutPadding;
+      width = (_containerWidthWithoutPadding ?? 0.0) + _handlersWidth! / 2; //CHANGE
       height = widget.trackBar.inactiveTrackBarHeight;
       top = 0;
     } else {
@@ -2123,8 +2123,9 @@ class _FlutterSliderState extends State<FlutterSlider>
       bottom = 0;
       height = widget.trackBar.activeTrackBarHeight;
       if (!widget.centeredOrigin || widget.rangeSlider) {
-        width = _rightHandlerXPosition! - _leftHandlerXPosition!;
-        left = _leftHandlerXPosition! + _handlersWidth! / 2 + _touchSize!;
+        width = _rightHandlerXPosition! - _leftHandlerXPosition! +
+            _handlersWidth! / 2 + 16; //CHANGE
+        left = _leftHandlerXPosition! + _touchSize! - 16; //CHANGE
 
         if (widget.rtl == true && widget.rangeSlider == false) {
           left = null;
